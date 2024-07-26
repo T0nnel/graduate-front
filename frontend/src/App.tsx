@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/Homepage/HomePage';
 import { ProductPage } from './pages/Productpage/ProductPage';
@@ -14,7 +13,7 @@ import { Cart } from './pages/cart/cart';
 
 import { Contact } from './pages/contact/contact';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <BrowserRouter>
       <UserProvider>
