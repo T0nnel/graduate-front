@@ -6,7 +6,7 @@ import { RegisterForm } from './components/register/registration';
 import { LoginForm } from './components/login/login';
 import { LoginPage } from './pages/Loginpage/LoginPage';
 import { DashboardPage } from './pages/dashboard/dashboard';
-/* import { UserProvider } from './pages/usercontext/usercontext'; // Corrected path */
+import { UserProvider } from './pages/usercontext/usercontext'; // Corrected path
 import { Orderpage } from './pages/orderpage/orderpage';
 import { Productdetails } from './pages/productDetails/productdetails';
 import { AddProduct } from './pages/addproduct/addproduct';
@@ -17,6 +17,7 @@ import { Contact } from './pages/contact/contact';
 const App: React.FC = () => {
   return (
     <Router>
+      <UserProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />
@@ -31,7 +32,8 @@ const App: React.FC = () => {
           <Route path="/product/:id" element={<Productdetails />} /> {/* Corrected path */}
           <Route path="/:searchTerm" element={<ProductPage />} />
         </Routes>
-          </Router>
+      </UserProvider>
+    </Router>
   );
 }
 
