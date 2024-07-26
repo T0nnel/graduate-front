@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    box-sizing: border-box;
+}
+.home{
+    width: 100%;
+    min-height:100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.4)),url(../../public/images/img1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.home h1{
+    padding-top: 250px;
+    font-size: 58px;
+    color: rgb(255, 255, 255);
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:500;
+    font-style: normal;
+    margin-left: 50px;
+}
+.header3{
+    margin-top: -200px;
+    margin-left: -800px;
+}
+.search-form{
+    padding-top:10px;
+    padding-left:41% ;
+}
+.search-form input{
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-right:380px;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: none;
+    text-align: left;
+}
+.search-form input:focus{
+    outline: none;
+}
+.search-form button{
+    padding:15px 6px;
+    margin-left: -10px;
+    color: white;
+    background:rgb(255, 149, 0);
+    border: none;
+    font-weight: 100;
+    cursor: pointer;
+    border-radius:0 10px 10px 0;
+}
+.search-form button:hover{
+    background-color:rgb(253, 171, 56) ;
+}

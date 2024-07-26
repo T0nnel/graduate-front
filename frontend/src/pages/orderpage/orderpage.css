@@ -1,0 +1,30 @@
+/* src/components/checkout.css */
+.checkout-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .checkout-container input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .order {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .order:hover {
+    background-color: #0056b3;
+  }
+  
