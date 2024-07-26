@@ -2,23 +2,15 @@ import React from 'react';
 import './dashboard.css';
 import { useUser } from '../usercontext/usercontext';
 import { Navigation } from '../../components/navigation/navigation';
-import { useNavigate } from 'react-router-dom';
+import { Footer } from '../../components/footer/footer';
 
 export const DashboardPage: React.FC = () => {
-  const { user } = useUser();
-  const navigate = useNavigate();
+  const { user } = useUser(); // Use the user context
 
   if (!user) {
     return <div>Please log in to view your dashboard.</div>;
   }
 
-  const handleEdit = () => {
-    navigate('/editprofile');
-  };
-
-  const handleAddProduct = () => {
-    navigate('/addproduct');
-  };
 
   return (
     <>
@@ -26,22 +18,22 @@ export const DashboardPage: React.FC = () => {
       <div className="profile-container">
         <div className="profile-header">
           <img 
-            src={user.profilePicture || 'https://via.placeholder.com/150'} 
+            src={user.profilePicture || '/images/icon.png'} 
             alt="Profile Picture" 
             className="profile-picture" 
           />
           <div className="profile-details">
-            <h1>{user.name}</h1>
+            <h1>{user.name}</h1> 
             <p>{user.email}</p>
-            <p>{user.bio || `A short bio about ${user.name}`}</p>
-            <button className="edit-button" onClick={handleEdit}>Edit Profile</button>
-            <button className="edit-button" onClick={handleAddProduct}>Add Product</button>
-          </div>
+            <p>{ `A short bio about ${user.name}`}</p> 
+                      </div>
         </div>
         <div className="profile-content">
           <h2>Additional Information</h2>
+          <p>{user.bio || 'No additional information provided.'}</p> 
         </div>
       </div>
+      <Footer />
     </>
   );
 };

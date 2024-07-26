@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './addproduct.css';
+import { Footer } from '../../components/footer/footer';
 
 export const AddProduct: React.FC = () => {
   const [product, setProduct] = useState({
@@ -161,6 +162,7 @@ export const AddProduct: React.FC = () => {
           <button type="submit">Add Product</button>
         </div>
       </form>
+      <Footer/>
     </div>
   );
 };

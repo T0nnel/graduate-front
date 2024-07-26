@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './contact.css';
 import { Navigate } from '../../components/navigate/navigate';
+import { Footer } from '../../components/footer/footer';
 
 export const Contact: React.FC = () => {
     const [name, setName] = useState('');
@@ -56,6 +57,7 @@ export const Contact: React.FC = () => {
                 </form>
                 {success && <p className="success-message">{success}</p>}
             </div>
+            <Footer/>
         </>
     );
 };

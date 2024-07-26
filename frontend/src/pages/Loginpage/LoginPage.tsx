@@ -1,7 +1,9 @@
+// pages/LoginPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../usercontext/usercontext';
 import { Navigate } from '../../components/navigate/navigate';
 import './loginpage.css';
+import { Footer } from '../../components/footer/footer';
 
 export const LoginPage: React.FC = () => {
   const { user } = useUser(); // Access user data from UserContext
@@ -26,6 +28,7 @@ export const LoginPage: React.FC = () => {
       ) : (
         <p>Please log in to see your information.</p>
       )}
+      <Footer/>
     </div>
   );
 };

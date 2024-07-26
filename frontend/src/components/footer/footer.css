@@ -1,0 +1,86 @@
+/* Ensure the container uses the full width of the viewport */
+.container {
+    width: 100%;
+    background-color: #000000; /* Light grey background for the footer */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+/* Style the footer element */
+footer {
+    max-width: 1200px; /* Limits the width of the footer */
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Style the logo image */
+footer a img {
+    max-width: 150px; /* Adjust according to your logo size */
+    height: auto;
+    margin-bottom: 5px;
+}
+
+/* Style for the footer description */
+footer p {
+    font-size: 14px;
+    color: #6c757d; /* Grey text color */
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Style the social media icons */
+.contents a {
+    display: inline-block;
+    margin: 10px 10px;
+    color: aqua;
+}
+
+.contents img {
+    width: 27px; /* Adjust according to your icon size */
+    height: auto;
+    transition: ease-in-out 0.3s;
+}
+.contents img:hover{
+    transform: scale(1.4);
+}
+
+/* Style the navigation links */
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #007bff; /* Primary color for links */
+    font-weight: bold;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contents a {
+        margin: 0 5px;
+    }
+
+    ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    footer {
+        padding: 20px;
+    }
+}

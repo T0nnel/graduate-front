@@ -30,8 +30,7 @@ export const Navigate = () => {
         <div className="nav-link3">
           <ul>       
             <Link to={'/cart'}><img className='image' src="/images/img.png" alt="" /></Link>
-            <li><Link to={'/loginpage'}>Home</Link></li>
-              <li><Link to={'/product'}>Products</Link></li>
+            <li><Link to={'/product'}>Home</Link></li>
               <li><Link to={'/contact'}>Contact Us</Link></li>
               <li><Link to={'/dashboard'}>Dashboard</Link></li>
               <li><button onClick={handleLogout} className="logout-button">Logout</button></li>

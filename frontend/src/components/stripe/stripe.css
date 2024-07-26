@@ -1,0 +1,70 @@
+/* src/components/stripe/stripecheckout.css */
+
+/* Container for the Stripe checkout component */
+.stripe-checkout-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+  }
+  
+  /* Form styling */
+  .stripe-checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Card element styling */
+  .stripe-card-element {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .stripe-card-element:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 1px #007bff;
+    outline: none;
+  }
+  
+  /* Submit button styling */
+  .stripe-submit-button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .stripe-submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .stripe-submit-button:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .stripe-submit-button:active:not(:disabled) {
+    background-color: #004494;
+    transform: translateY(0);
+  }
+  
+  /* Add some spacing for the form's children */
+  .stripe-checkout-form > * {
+    margin: 0;
+  }
+  

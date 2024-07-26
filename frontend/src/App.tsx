@@ -6,12 +6,12 @@ import { RegisterForm } from './components/register/registration';
 import { LoginForm } from './components/login/login';
 import { LoginPage } from './pages/Loginpage/LoginPage';
 import { DashboardPage } from './pages/dashboard/dashboard';
-import { UserProvider } from './pages/usercontext/usercontext';
+import { UserProvider } from './pages/usercontext/usercontext'; // Corrected path
 import { Orderpage } from './pages/orderpage/orderpage';
 import { Productdetails } from './pages/productDetails/productdetails';
 import { AddProduct } from './pages/addproduct/addproduct';
 import { Cart } from './pages/cart/cart';
-import { EditProfilePage } from './pages/editprofile/editprofile';
+
 import { Contact } from './pages/contact/contact';
 
 const App: React.FC = () => {
@@ -20,7 +20,7 @@ const App: React.FC = () => {
       <UserProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/loginpage" element={<LoginPage />} />
@@ -29,8 +29,7 @@ const App: React.FC = () => {
           <Route path="/product" element={<ProductPage />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/details:id" element={<Productdetails />} />
-          <Route path="/editprofile" element={<EditProfilePage />} />
+          <Route path="/product/:id" element={<Productdetails />} /> {/* Corrected path */}
           <Route path="/:searchTerm" element={<ProductPage />} />
         </Routes>
       </UserProvider>

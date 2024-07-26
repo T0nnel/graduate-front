@@ -1,6 +1,9 @@
-// src/components/Checkout.tsx
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+// Orderpage.tsx
+
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import './orderpage.css';
+import { Footer } from '../../components/footer/footer';
+import { StripeCheckout } from '../../components/stripe/stripecheckout';
 
 interface ShippingDetails {
   name: string;
@@ -10,23 +13,13 @@ interface ShippingDetails {
   zip: string;
 }
 
-interface PaymentDetails {
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-}
-
 interface CartItem {
-  id: string;
+  _id: string;
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 }
-
-const mockCartItems: CartItem[] = [
-  { id: '1', name: 'Product A', price: 29.99, quantity: 2 },
-  { id: '2', name: 'Product B', price: 49.99, quantity: 1 },
-];
 
 export const Orderpage: React.FC = () => {
   const [shipping, setShipping] = useState<ShippingDetails>({
@@ -36,123 +29,137 @@ export const Orderpage: React.FC = () => {
     state: '',
     zip: '',
   });
-  const [payment, setPayment] = useState<PaymentDetails>({
-    cardNumber: '',
-    expirationDate: '',
-    cvv: '',
-  });
-  const [cartItems] = useState<CartItem[]>(mockCartItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [orderSuccess, setOrderSuccess] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Load cart items from localStorage
+    const loadedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const purchaseInfo = JSON.parse(localStorage.getItem('purchase') || 'null');
+
+    if (purchaseInfo) {
+      // Add the purchaseInfo item to the cart
+      setCartItems([purchaseInfo]);
+    } else {
+      setCartItems(loadedCart);
+    }
+  }, []);
 
   const handleShippingChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setShipping((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePaymentChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPayment((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Submit order details to the backend
-    console.log('Order submitted:', { shipping, payment, cartItems });
-  };
+    setLoading(true);
+    setOrderSuccess(null);
 
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    try {
+      // Simulate a network request to submit order details
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate 2 seconds delay
+      console.log('Order submitted:', { shipping, cartItems });
+      setOrderSuccess(true);
+
+      // Optionally, clear the cart and purchase information from localStorage
+      localStorage.removeItem('cart');
+      localStorage.removeItem('purchase');
+    } catch (error) {
+      console.error('Order submission failed:', error);
+      setOrderSuccess(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="checkout-container">
-      <h2>Checkout</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="section">
-          <h3>Shipping Details</h3>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={shipping.name}
-            onChange={handleShippingChange}
-            required
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={shipping.address}
-            onChange={handleShippingChange}
-            required
-          />
-          <input
-            type="text"
-            name="city"
-            placeholder="City"
-            value={shipping.city}
-            onChange={handleShippingChange}
-            required
-          />
-          <input
-            type="text"
-            name="state"
-            placeholder="State"
-            value={shipping.state}
-            onChange={handleShippingChange}
-            required
-          />
-          <input
-            type="text"
-            name="zip"
-            placeholder="ZIP Code"
-            value={shipping.zip}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-
-        <div className="section">
-          <h3>Payment Information</h3>
-          <input
-            type="text"
-            name="cardNumber"
-            placeholder="Card Number"
-            value={payment.cardNumber}
-            onChange={handlePaymentChange}
-            required
-          />
-          <input
-            type="text"
-            name="expirationDate"
-            placeholder="Expiration Date (MM/YY)"
-            value={payment.expirationDate}
-            onChange={handlePaymentChange}
-            required
-          />
-          <input
-            type="text"
-            name="cvv"
-            placeholder="CVV"
-            value={payment.cvv}
-            onChange={handlePaymentChange}
-            required
-          />
-        </div>
-
-        <div className="section">
-          <h3>Order Summary</h3>
-          <ul>
+    <>
+      <div className="checkout-page">
+        <div className="order-summary">
+          <h3 className="section-title">Order Summary</h3>
+          <ul className="order-items">
             {cartItems.map((item) => (
-              <li key={item.id}>
-                {item.name} - ${item.price.toFixed(2)} x {item.quantity}
+              <li key={item._id} className="order-item">
+                {item.image && (
+                  <img
+                    src={`http://localhost:5000/uploads/${item.image}`}
+                    alt={item.name}
+                    className='order-item-image'
+                  />
+                )}
+                <h1 className='header'>{item.name}</h1>
+                <h4 className="order-total">Total: ${item.price.toFixed(2)}</h4>
               </li>
             ))}
           </ul>
-          <h4>Total: ${calculateTotal()}</h4>
         </div>
 
-        <button className='order' type="submit">Place Order</button>
-      </form>
-    </div>
+        <div className="checkout-container">
+          <h2 className="checkout-title">Checkout</h2>
+          {loading && <p className="loading-message">Ordering...</p>}
+          {orderSuccess === true && <p className="success-message">Successfully ordered!</p>}
+          {orderSuccess === false && <p className="error-message">Order failed. Please try again.</p>}
+          <form className="checkout-form" onSubmit={handleSubmit}>
+            <div className="section shipping-details">
+              <h3 className="section-title">Shipping Details</h3>
+              <input
+                className="form-input"
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={shipping.name}
+                onChange={handleShippingChange}
+                required
+              />
+              <input
+                className="form-input"
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={shipping.address}
+                onChange={handleShippingChange}
+                required
+              />
+              <input
+                className="form-input"
+                type="text"
+                name="city"
+                placeholder="City"
+                value={shipping.city}
+                onChange={handleShippingChange}
+                required
+              />
+              <input
+                className="form-input"
+                type="text"
+                name="state"
+                placeholder="State"
+                value={shipping.state}
+                onChange={handleShippingChange}
+                required
+              />
+              <input
+                className="form-input"
+                type="text"
+                name="zip"
+                placeholder="ZIP Code"
+                value={shipping.zip}
+                onChange={handleShippingChange}
+                required
+              />
+            </div>
+
+            <div className="section payment-information">
+              <h3 className="section-title">Payment Information</h3>
+              <StripeCheckout />
+            </div>
+
+            <button className="order-button" type="submit">Place Order</button>
+          </form>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };

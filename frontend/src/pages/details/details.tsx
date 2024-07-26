@@ -3,6 +3,7 @@ import axios from 'axios';
 import './productpage.css'; 
 import { Navigate } from '../../components/navigate/navigate';
 import { Link } from 'react-router-dom';
+import { Footer } from '../../components/footer/footer';
 
 interface Product {
   _id: string;
@@ -71,6 +72,7 @@ export const ProductPage: React.FC = () => {
           </div>
         )}
       </div>
+      <Footer/>
     </>
   );
 };
