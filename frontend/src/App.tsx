@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/Homepage/HomePage';
 import { ProductPage } from './pages/Productpage/ProductPage';
@@ -10,10 +11,9 @@ import { Orderpage } from './pages/orderpage/orderpage';
 import { Productdetails } from './pages/productDetails/productdetails';
 import { AddProduct } from './pages/addproduct/addproduct';
 import { Cart } from './pages/cart/cart';
-
 import { Contact } from './pages/contact/contact';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <UserProvider>
