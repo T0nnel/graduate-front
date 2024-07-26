@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/Homepage/HomePage';
 import { ProductPage } from './pages/Productpage/ProductPage';
 import { RegisterForm } from './components/register/registration';
@@ -16,7 +16,7 @@ import { Contact } from './pages/contact/contact';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <UserProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -33,7 +33,7 @@ const App: React.FC = () => {
           <Route path="/:searchTerm" element={<ProductPage />} />
         </Routes>
       </UserProvider>
-    </Router>
+    </BrowserRouter>
   );
 }
 
