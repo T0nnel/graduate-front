@@ -5,7 +5,7 @@
 .home{
     width: 100%;
     min-height:100vh;
-    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.4)),url(../../public/images/img1.png);
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.4)),url(/images/img1.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
