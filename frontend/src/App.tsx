@@ -1,39 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/Homepage/HomePage';
-import { ProductPage } from './pages/Productpage/ProductPage';
-import { RegisterForm } from './components/register/registration';
-import { LoginForm } from './components/login/login';
-import { LoginPage } from './pages/Loginpage/LoginPage';
-import { DashboardPage } from './pages/dashboard/dashboard';
-import { UserProvider } from './pages/usercontext/usercontext';
-import { Orderpage } from './pages/orderpage/orderpage';
-import { Productdetails } from './pages/productDetails/productdetails';
-import { AddProduct } from './pages/addproduct/addproduct';
-import { Cart } from './pages/cart/cart';
-import { EditProfilePage } from './pages/editprofile/editprofile';
-import { Contact } from './pages/contact/contact';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import ProductPage from './pages/ProductPage';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <UserProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/loginpage" element={<LoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/order" element={<Orderpage />} />
-          <Route path="/product" element={<ProductPage />} />
-          <Route path="/addproduct" element={<AddProduct />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/details:id" element={<Productdetails />} />
-          <Route path="/editprofile" element={<EditProfilePage />} />
-          <Route path="/:searchTerm" element={<ProductPage />} />
-        </Routes>
-      </UserProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/products" element={<ProductPage />} />
+      </Routes>
     </Router>
   );
 }
